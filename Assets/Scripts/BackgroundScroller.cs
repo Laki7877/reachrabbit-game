@@ -17,7 +17,7 @@ public class BackgroundScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSizeX * this.transform.localScale.x);
+		float newPosition = Mathf.Repeat(Time.time * scrollSpeed * this.transform.localScale.x, tileSizeX * this.transform.localScale.x);
         transform.position = startPosition + Vector3.left * newPosition;
     }
 }
