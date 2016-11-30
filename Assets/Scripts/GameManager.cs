@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class test : MonoBehaviour {
+public class GameManager : MonoBehaviour {
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -10,5 +12,6 @@ public class test : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	
 	}
 }
