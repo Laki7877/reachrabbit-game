@@ -8,23 +8,14 @@ public class Parallax : MonoBehaviour {
 	public float debugSpeed;
 	public Vector3 direction;
 	private Vector3 startPosition;
-	private Camera mainCamera;
-	private int screenWidth;
-	private int screenHeight;
 
 	// Use this for initialization
 	void Start () {
 		startPosition = this.transform.position;
 	}
 
-	void Awake () {
-		screenWidth = Screen.width;
-		screenHeight = Screen.height;
-		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
-	}
-
-	void OnDrawGizmos() {
-		Gizmos.color = Color.green;
+	void OnDrawGizmosSelected() {
+		Gizmos.color = Color.blue;
 		Gizmos.DrawLine (this.transform.position, this.transform.position + direction.normalized*2);
 	}
 	
