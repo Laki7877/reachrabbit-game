@@ -33,7 +33,8 @@ public class DeathByBurger : MonoBehaviour {
 			}
 			collider.gameObject.SetActive (false);
 
-			this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-300f, 0));
+			this.GetComponent<Rigidbody2D> ().constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+			this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-350f, 0));
 		}
 	}
 }
