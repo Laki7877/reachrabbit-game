@@ -24,7 +24,6 @@ public class ItemSpawner : MonoBehaviour {
 			// spawn item
 			Instantiate(itemPrefab, spawnerPoint[point], Quaternion.Euler(0,0,7.5f), this.transform);
 		}
-
 	}
 
 	void OnDrawGizmosSelected() {
