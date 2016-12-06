@@ -15,9 +15,9 @@ public class Burger : MonoBehaviour {
 	void Update () {
 		this.transform.position += direction.normalized * speed * Time.deltaTime;
 
-		float delta_y = 3*Mathf.Cos (Time.realtimeSinceStartup * 180 / Mathf.PI )*Time.deltaTime;
-		Vector3 yo = this.transform.position;
-		yo.y -= delta_y;
-		this.transform.position = yo;
+//		float delta_y = 3*Mathf.Cos (Time.realtimeSinceStartup * 180 / Mathf.PI )*Time.deltaTime;
+//		Vector3 yo = this.transform.position;
+//		yo.y -= delta_y;
+//		this.transform.position = yo;
 	}
 }

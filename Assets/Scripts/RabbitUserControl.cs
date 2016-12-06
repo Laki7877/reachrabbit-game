@@ -18,7 +18,6 @@ public class RabbitUserControl : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		
 		if ((Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) ||  Input.GetButtonDown("Jump")) {
 			if (_jumpingTimeout >= jumpingTimeout) {
 				controller.Jump ();	

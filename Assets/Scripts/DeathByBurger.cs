@@ -18,6 +18,7 @@ public class DeathByBurger : MonoBehaviour {
 		if (collider.tag == "Item") {
 			//dead
 			Debug.Log("DEAD");
+			this.GetComponent<Animator> ().SetTrigger ("Die");
 		}
 	}
 }
