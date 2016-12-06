@@ -11,21 +11,18 @@ public class RabbitCharacterController : MonoBehaviour {
 		body = this.GetComponent<Rigidbody2D> ();
 		animator = this.GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	void OnCollisionEnter2D(Collision2D o) {
 		if (o.collider.tag == "Hill") {
 			animator.SetBool ("IsRun", true);
+			animator.SetBool ("IsJump", false);
 			animator.SetBool ("IsGrounded", true);
 		}
 	}
 
 	public void Jump() {
 		animator.SetBool ("IsGrounded", false);
+		animator.SetBool ("IsJump", true);
 		body.AddForce(new Vector2(0f, jumpingForce));
 	}
 }
