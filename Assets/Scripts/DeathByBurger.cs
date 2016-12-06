@@ -18,7 +18,22 @@ public class DeathByBurger : MonoBehaviour {
 		if (collider.tag == "Item") {
 			//dead
 			Debug.Log("DEAD");
+			this.GetComponent<PlayerState> ().isDead = true;
 			this.GetComponent<Animator> ().SetTrigger ("Die");
+			var o = GameObject.FindGameObjectsWithTag ("Parallax");
+			var g = GameObject.FindGameObjectsWithTag ("Item");
+			var spw = GameObject.FindGameObjectWithTag ("ItemLayer");
+			spw.GetComponent<ItemSpawner> ().enabled = false;
+			foreach (var s in o) { 
+				s.GetComponent<Parallax> ().enabled = false;	
+			}
+
+			foreach (var s in g) {
+				s.GetComponent<Burger> ().enabled = false;
+			}
+			collider.gameObject.SetActive (false);
+
+			this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-300f, 0));
 		}
 	}
 }
