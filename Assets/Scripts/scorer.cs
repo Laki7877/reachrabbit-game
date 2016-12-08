@@ -76,7 +76,8 @@ public class scorer : MonoBehaviour {
 		player.GetComponent<CircleCollider2D> ().enabled = true;
 
 		player.GetComponent<Rigidbody2D> ().constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-		player.GetComponent<Rigidbody2D> ().AddTorque (120.0f);
+		player.GetComponent<Rigidbody2D> ().constraints &= ~RigidbodyConstraints2D.FreezeRotation;
+		player.GetComponent<Rigidbody2D> ().AddTorque (150.0f);
 		// disable all parallax
 		foreach (var s in o) { 
 			s.GetComponent<Parallax> ().enabled = false;	
@@ -106,6 +107,11 @@ public class scorer : MonoBehaviour {
 	}
 	public void StopGame() {
 		tryAgainText.SetActive (true);
+		var g = GameObject.FindGameObjectsWithTag ("Item");
+		foreach (var s in g) {
+			s.SetActive (false);
+			Destroy (s.gameObject);
+		}
 		state = 0;
 	}
 
