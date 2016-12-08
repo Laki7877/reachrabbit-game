@@ -19,7 +19,6 @@ public class RabbitUserControl : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (this.GetComponent<PlayerState> ().isDead) {
-			Debug.Log ("Deadtamoto 2");
 			return;
 		}
 		if ((Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) ||  Input.GetButtonDown("Jump")) {

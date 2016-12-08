@@ -16,13 +16,12 @@ public class Parallax : MonoBehaviour {
 
 	void OnDrawGizmosSelected() {
 		Gizmos.color = Color.blue;
-		Gizmos.DrawLine (this.transform.position, this.transform.position + direction.normalized*2);
+		Gizmos.DrawLine (this.transform.position, this.transform.position + direction.normalized * 2);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		float newPosition = Mathf.Repeat(Time.time * speed, tileSizeX);
-		debugSpeed = newPosition;
-		transform.position = startPosition + direction.normalized * debugSpeed;
+		transform.position = startPosition + direction.normalized * newPosition;
 	}	
 }
