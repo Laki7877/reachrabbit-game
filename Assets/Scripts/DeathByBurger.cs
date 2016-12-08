@@ -14,11 +14,10 @@ public class DeathByBurger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		Debug.Log (collider.tag);
 		if (collider.tag == "Item") {
 			//dead
-			Debug.Log("DEAD");
-			this.GetComponent<Animator> ().SetTrigger ("Die");
+			collider.gameObject.SetActive (false);
+			GameObject.FindGameObjectWithTag ("GameManager").GetComponent<scorer> ().Die ();
 		}
 	}
 }
