@@ -8,6 +8,7 @@ public class ItemDestroyer : MonoBehaviour {
 			other.gameObject.SetActive (false);
 			other.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			Destroy (other.gameObject);
+
 		}
 	}
 }

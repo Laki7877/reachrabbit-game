@@ -5,16 +5,21 @@ using UnityEngine.UI;
 public class scorer : MonoBehaviour {
 
 	public Text text;
+	public Vector3 playerSpawnPoint =  new Vector3(0, -0.58f, 0);
+	public GameObject playerPrefab;
 	public GameObject player;
 	public GameObject hill;
 	public GameObject mountain;
+	public GameObject cloud;
 	public GameObject burgerSpawner;
 
 	float meinScore = 0;
 
 	// Use this for initialization
 	void Start () {
-		
+		meinScore = 0;
+		StopGame ();
+		updateScoreText ();
 	}
 	
 	// Update is called once per frame
@@ -22,15 +27,27 @@ public class scorer : MonoBehaviour {
 		burgerSpawner.GetComponent<ItemSpawner> ().speed = hill.GetComponent<Parallax> ().speed;
 	}
 	void FixedUpdate(){
-
-		if (player.GetComponent<PlayerState>().isDead) {
+		if (IsDead()) {
+			if (IsTapped () && player == null) {
+				StartGame ();
+			}
 			return;
 		}
 
 		meinScore += 0.01f;
-		text.text = Mathf.Round (meinScore) + " m";
+		updateScoreText ();
 	}
 
+	bool IsTapped() {
+		return (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) || Input.GetButtonDown ("Jump");
+	}
+
+	void updateScoreText() {
+		text.text = Mathf.Round (meinScore) + " m";
+	}
+	public bool IsDead() {
+		return (player != null) ? player.GetComponent<PlayerState> ().isDead : true;
+	}
 	public void Die() {
 		player.GetComponent<PlayerState> ().isDead = true;
 		player.GetComponent<Animator> ().SetTrigger ("Die");
@@ -52,7 +69,21 @@ public class scorer : MonoBehaviour {
 			s.GetComponent<Burger> ().enabled = false;
 		}
 	}
-	public void Retry() {
-		
+	public void StartGame() {
+		meinScore = 0;
+		updateScoreText ();
+		player = Instantiate(playerPrefab, this.transform.parent) as GameObject;
+		player.transform.position = playerSpawnPoint;
+		hill.GetComponent<Parallax> ().enabled = true;
+		mountain.GetComponent<Parallax> ().enabled = true;
+		cloud.GetComponent<Parallax> ().enabled = true;
+		burgerSpawner.GetComponent<ItemSpawner> ().player = player;
+		burgerSpawner.GetComponent<ItemSpawner> ().enabled = true;
+	}
+	public void StopGame() {
+		hill.GetComponent<Parallax> ().enabled = false;
+		mountain.GetComponent<Parallax> ().enabled = false;
+		cloud.GetComponent<Parallax> ().enabled = false;
+		burgerSpawner.GetComponent<ItemSpawner> ().enabled = false;
 	}
 }

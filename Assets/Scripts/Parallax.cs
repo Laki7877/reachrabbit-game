@@ -8,10 +8,16 @@ public class Parallax : MonoBehaviour {
 	public float debugSpeed;
 	public Vector3 direction;
 	private Vector3 startPosition;
+	private float time;
 
 	// Use this for initialization
 	void Start () {
 		startPosition = this.transform.position;
+		time = 0.0f;
+	}
+
+	void Awake() {
+		time = 0.0f;
 	}
 
 	void OnDrawGizmosSelected() {
@@ -21,7 +27,8 @@ public class Parallax : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float newPosition = Mathf.Repeat(Time.time * speed, tileSizeX);
+		float newPosition = Mathf.Repeat(time * speed, tileSizeX);
+		time += Time.deltaTime;
 		transform.position = startPosition + direction.normalized * newPosition;
 	}	
 }
