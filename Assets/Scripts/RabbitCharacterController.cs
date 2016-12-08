@@ -11,10 +11,14 @@ public class RabbitCharacterController : MonoBehaviour {
 		body = this.GetComponent<Rigidbody2D> ();
 		animator = this.GetComponent<Animator>();
 	}
+	void Start() {
+	}
 
 	void OnCollisionEnter2D(Collision2D o) {
 		if (o.collider.tag == "Hill") {
-			animator.SetBool ("IsRun", true);
+			if (GetComponent<PlayerState> ().isRun) {
+				animator.SetBool ("IsRun", true);
+			}
 			animator.SetBool ("IsJump", false);
 			animator.SetBool ("IsGrounded", true);
 		}

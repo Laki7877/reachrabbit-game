@@ -29,7 +29,6 @@ public class ItemSpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (player == null) {
-			Debug.Log (player);
 			return;
 		}
 
