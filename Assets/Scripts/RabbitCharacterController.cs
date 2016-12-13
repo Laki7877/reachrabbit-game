@@ -3,6 +3,8 @@ using System.Collections;
 
 public class RabbitCharacterController : MonoBehaviour {
 	public float jumpingForce = 250.0f;
+	public AudioClip jumpSound;
+	public AudioClip hitSound;
 	private Rigidbody2D body;
 	private Animator animator;
 
@@ -23,10 +25,15 @@ public class RabbitCharacterController : MonoBehaviour {
 			animator.SetBool ("IsGrounded", true);
 		}
 	}
+	public void Die() {
+		GameObject.FindGameObjectWithTag ("GameManager").GetComponent<scorer> ().Die ();
+		GetComponent<AudioSource> ().PlayOneShot (hitSound);
+	}
 
 	public void Jump() {
 		animator.SetBool ("IsGrounded", false);
 		animator.SetBool ("IsJump", true);
 		body.AddForce(new Vector2(0f, jumpingForce));
+		GetComponent<AudioSource> ().PlayOneShot (jumpSound);
 	}
 }

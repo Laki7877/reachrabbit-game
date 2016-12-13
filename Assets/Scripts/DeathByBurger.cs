@@ -17,7 +17,7 @@ public class DeathByBurger : MonoBehaviour {
 		if (collider.tag == "Item") {
 			//dead
 			collider.gameObject.SetActive (false);
-			GameObject.FindGameObjectWithTag ("GameManager").GetComponent<scorer> ().Die ();
+			this.GetComponent<RabbitCharacterController> ().Die ();
 		}
 	}
 }
