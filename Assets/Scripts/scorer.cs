@@ -14,6 +14,7 @@ public class scorer : MonoBehaviour {
 	public GameObject burgerSpawner;
 	public GameObject startText;
 	public GameObject tryAgainText;
+	public GameObject hiScoreText;
 
 	public float speed = 1.0f;
 
@@ -25,6 +26,7 @@ public class scorer : MonoBehaviour {
 	void Start () {
 		meinScore = 0;
 		hiScore = PlayerPrefs.GetInt ("HighScore", 0);
+		hiScoreText.GetComponent<Text> ().text = "Best: " + hiScore + " m";
 		StopGame ();
 		StopBg ();
 		updateScoreText ();
@@ -36,7 +38,7 @@ public class scorer : MonoBehaviour {
 		burgerSpawner.GetComponent<ItemSpawner> ().speed = hill.GetComponent<Parallax> ().speed;
 	}
 	void FixedUpdate(){
-		if (state == 2) {
+		if (state == 2 && !IsDead()) {
 			meinScore += 0.01f * speed;
 			speed = 1.0f + meinScore / 100.0f;
 			GetSpeedFromLevel ();
@@ -51,13 +53,14 @@ public class scorer : MonoBehaviour {
 			PreStartGame ();
 		} else if (state == 1) {
 			StartGame ();
+			player.GetComponent<RabbitUserControl> ().Touch ();
 		} else if(state == 2 && player != null){
 			player.GetComponent<RabbitUserControl> ().Touch ();
 		}
 	}
 
 	public void OpenAd() {
-		Application.OpenURL ("www.reachrabbit.com");
+		Application.OpenURL ("https://www.reachrabbit.com");
 	}
 
 	bool IsTapped() {
@@ -66,7 +69,7 @@ public class scorer : MonoBehaviour {
 
 	float GetSpeedFromLevel() {
 		hill.GetComponent<Parallax> ().speed = 3.0f * speed;
-		mountain.GetComponent<Parallax> ().speed = 0.5f * speed;
+		mountain.GetComponent<Parallax> ().speed = 5f * speed;
 		return meinScore;
 	}
 
@@ -130,6 +133,7 @@ public class scorer : MonoBehaviour {
 			PlayerPrefs.SetInt ("HighScore", Mathf.RoundToInt(meinScore));
 			PlayerPrefs.Save ();
 			hiScore = Mathf.RoundToInt(meinScore);
+			hiScoreText.GetComponent<Text> ().text = "Best: " + hiScore + " m";
 		}
 	}
 
