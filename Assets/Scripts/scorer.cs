@@ -49,9 +49,10 @@ public class scorer : MonoBehaviour {
 	public void Touch() {
 		if (state == 0) {
 			PreStartGame ();
-		}
-		else if (state == 1) {
+		} else if (state == 1) {
 			StartGame ();
+		} else if(state == 2 && player != null){
+			player.GetComponent<RabbitUserControl> ().Touch ();
 		}
 	}
 

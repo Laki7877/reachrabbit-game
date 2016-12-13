@@ -21,16 +21,17 @@ public class RabbitUserControl : MonoBehaviour {
 		if (this.GetComponent<PlayerState> ().isDead) {
 			return;
 		}
-		else if (IsTapped()) {
-			if (_jumpingTimeout >= jumpingTimeout) {
-				controller.Jump ();	
-				_jumpingTimeout = 0;
-			}
-		}
 		_jumpingTimeout += Time.deltaTime;	
 	}
 
 	bool IsTapped() {
 		return (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) || Input.GetButtonDown ("Jump");
+	}
+
+	public void Touch() {
+		if (_jumpingTimeout >= jumpingTimeout) {
+				controller.Jump ();	
+				_jumpingTimeout = 0;
+			}
 	}
 }
