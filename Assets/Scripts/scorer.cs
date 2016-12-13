@@ -18,11 +18,13 @@ public class scorer : MonoBehaviour {
 	public float speed = 1.0f;
 
 	int state = 0;
+	int hiScore = 0;
 	float meinScore = 0;
 
 	// Use this for initialization
 	void Start () {
 		meinScore = 0;
+		hiScore = PlayerPrefs.GetInt ("HighScore", 0);
 		StopGame ();
 		StopBg ();
 		updateScoreText ();
@@ -122,6 +124,12 @@ public class scorer : MonoBehaviour {
 			Destroy (s.gameObject);
 		}
 		state = 0;
+
+		if (meinScore > hiScore) {
+			PlayerPrefs.SetInt ("HighScore", Mathf.RoundToInt(meinScore));
+			PlayerPrefs.Save ();
+			hiScore = Mathf.RoundToInt(meinScore);
+		}
 	}
 
 	public void StopBg() {
