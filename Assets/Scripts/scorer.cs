@@ -60,7 +60,7 @@ public class scorer : MonoBehaviour {
 	}
 
 	public void OpenAd() {
-		Application.OpenURL ("https://www.reachrabbit.com");
+		Application.OpenURL ("http://www.reachrabbit.com");
 	}
 
 	bool IsTapped() {
