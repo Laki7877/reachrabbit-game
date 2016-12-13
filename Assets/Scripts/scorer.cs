@@ -48,8 +48,12 @@ public class scorer : MonoBehaviour {
 		}
 	}
 
+	public void OpenAd() {
+		Application.OpenURL ("www.reachrabbit.com");
+	}
+
 	bool IsTapped() {
-		return (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) || Input.GetButtonDown ("Jump");
+		return (GUIUtility.hotControl == 0 && Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) || Input.GetButtonDown ("Jump");
 	}
 
 	float GetSpeedFromLevel() {
