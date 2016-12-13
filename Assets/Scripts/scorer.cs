@@ -34,17 +34,22 @@ public class scorer : MonoBehaviour {
 		burgerSpawner.GetComponent<ItemSpawner> ().speed = hill.GetComponent<Parallax> ().speed;
 	}
 	void FixedUpdate(){
-		if (IsTapped () && state == 0) {
-			PreStartGame ();
-		}
-		else if (IsTapped () && state == 1) {
-			StartGame ();
-		}
-		else if (state == 2) {
+		if (state == 2) {
 			meinScore += 0.01f * speed;
 			speed = 1.0f + meinScore / 100.0f;
 			GetSpeedFromLevel ();
 			updateScoreText ();
+		} else if (IsTapped ()) {
+			//Touch ();
+		}
+	}
+
+	public void Touch() {
+		if (state == 0) {
+			PreStartGame ();
+		}
+		else if (state == 1) {
+			StartGame ();
 		}
 	}
 
