@@ -69,7 +69,7 @@ public class scorer : MonoBehaviour {
 
 	float GetSpeedFromLevel() {
 		hill.GetComponent<Parallax> ().speed = 3.0f * speed;
-		mountain.GetComponent<Parallax> ().speed = 5f * speed;
+		mountain.GetComponent<Parallax> ().speed = 0.5f * speed;
 		return meinScore;
 	}
 

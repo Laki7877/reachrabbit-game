@@ -7,6 +7,7 @@ public class ItemSpawner : MonoBehaviour {
 	public float maxTime = 2.0f;
 	public float speed = 3.0f;
 	public GameObject itemPrefab;
+	public GameObject itemPrefab2;
 	public GameObject player;
 
 	float time = 0;
@@ -40,8 +41,13 @@ public class ItemSpawner : MonoBehaviour {
 			nextSpawnTime = Random.Range(minTime, maxTime);
 
 			// spawn item
-			var burger = Instantiate(itemPrefab, new Vector3(4.74f, GetAverage(), 0), Quaternion.Euler(0,0,7.5f), this.transform) as GameObject;
+			GameObject burger = null;
 
+			if (Random.value < 0.15f) {
+				burger = Instantiate (itemPrefab2, new Vector3 (4.74f, -0.15f, 0), Quaternion.Euler (0, 0, 7.5f), this.transform) as GameObject;
+			} else {
+				burger = Instantiate (itemPrefab, new Vector3 (4.74f, GetAverage (), 0), Quaternion.Euler (0, 0, 7.5f), this.transform) as GameObject;
+			}
 			burger.GetComponent<Burger> ().speed = this.speed;
 		}
 
